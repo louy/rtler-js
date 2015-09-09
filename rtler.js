@@ -3,14 +3,16 @@ var css = require('css');
 var SWITCHABLE_AUTO = [
   'right',
   'left',
-  'margin',
   'margin-right',
   'margin-left',
 ];
 var SWITCHABLE_ZERO = [
-  'padding',
   'padding-right',
   'padding-left',
+];
+var QUAD_VALUE = [
+  'margin',
+  'padding',
 ];
 
 function switchPropertyName(property) {
@@ -29,6 +31,14 @@ function flip(cssText) {
     var declarations = [], properties = [];
 
     rule.declarations.forEach(function(declaration) {
+      if (QUAD_VALUE.indexOf(declaration.property) > -1) {
+        var value = declaration.value.split(' ');
+        if (value.length === 4) {
+          declaration.value = [value[0], value[3], value[2], value[1]].join(' ');
+          properties.push(declaration.property);
+          declarations.push(declaration);
+        }
+      } else
       if (SWITCHABLE_AUTO.indexOf(declaration.property) > -1 ||
           SWITCHABLE_ZERO.indexOf(declaration.property) > -1) {
         declaration.property = switchPropertyName(declaration.property);

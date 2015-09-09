@@ -24,9 +24,19 @@ describe('rtler', function() {
       var a = 'div{margin-right:0;}', b = 'div{margin-left:0;margin-right:auto;}';
       expect(rtler.flip(a)).to.equal(b);
     });
-    it('flips with 0', function() {
+    it('flips padding', function() {
       var a = 'div{padding-right:10px;}',
           b = 'div{padding-left:10px;padding-right:0;}';
+      expect(rtler.flip(a)).to.equal(b);
+    });
+    it('flips short margin', function() {
+      var a = 'div{margin:10px 20px 30px 40px;}',
+          b = 'div{margin:10px 40px 30px 20px;}';
+      expect(rtler.flip(a)).to.equal(b);
+    });
+    it('flips short padding', function() {
+      var a = 'div{padding:10px 20px 30px 40px;}',
+          b = 'div{padding:10px 40px 30px 20px;}';
       expect(rtler.flip(a)).to.equal(b);
     });
   });
