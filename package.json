@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/louy/rtler-js/issues"
   },
-  "homepage": "https://github.com/louy/rtler-js#readme"
+  "homepage": "https://github.com/louy/rtler-js#readme",
+  "dependencies": {
+    "css": "^2.2.1"
+  }
 }
