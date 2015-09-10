@@ -10,7 +10,7 @@ var SWITCHABLE_ZERO = [
   'padding-right',
   'padding-left',
 ];
-var QUAD_VALUE = [
+var SWITCHABLE_QUAD = [
   'margin',
   'padding',
 ];
@@ -41,7 +41,7 @@ function flip(cssText) {
     var declarations = [], properties = [];
 
     rule.declarations.forEach(function(declaration) {
-      if (QUAD_VALUE.indexOf(declaration.property) > -1) {
+      if (SWITCHABLE_QUAD.indexOf(declaration.property) > -1) {
         var value = declaration.value.split(' ');
         if (value.length === 4) {
           declaration.value = [value[0], value[3], value[2], value[1]].join(' ');
