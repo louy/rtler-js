@@ -39,6 +39,19 @@ describe('rtler', function() {
           b = 'div{padding:10px 40px 30px 20px;}';
       expect(rtler.flip(a)).to.equal(b);
     });
+    it('flips background position', function() {
+      var a = 'div{background-position:right center;}',
+          b = 'div{background-position:left center;}';
+      expect(rtler.flip(a)).to.equal(b);
+
+      var a1 = 'div{background-position:center top;}',
+          b1 = '';
+      expect(rtler.flip(a1)).to.equal(b1);
+
+      var a2 = 'div{background-position:10px -10px;}',
+          b2 = '';
+      expect(rtler.flip(a2)).to.equal(b2);
+    });
   });
 
   describe.skip('#override', function() {

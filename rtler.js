@@ -14,9 +14,19 @@ var QUAD_VALUE = [
   'margin',
   'padding',
 ];
+var SWITCHABLE_POSITION = [
+  'background-position',
+];
 
 function switchPropertyName(property) {
   return property
+                .replace('right', 'RIGHT')
+                .replace('left', 'right')
+                .replace('RIGHT', 'left');
+}
+
+function flipPosition(value) { // origin should be swapped when we add direction: rtl;
+  return value
                 .replace('right', 'RIGHT')
                 .replace('left', 'right')
                 .replace('RIGHT', 'left');
@@ -44,6 +54,14 @@ function flip(cssText) {
         declaration.property = switchPropertyName(declaration.property);
         properties.push(declaration.property);
         declarations.push(declaration);
+      } else
+      if (SWITCHABLE_POSITION.indexOf(declaration.property) > -1) {
+        var flipped = flipPosition(declaration.value);
+        if (flipped !== declaration.value) {
+          declaration.value = flipPosition(declaration.value);
+          properties.push(declaration.property);
+          declarations.push(declaration);
+        }
       }
     });
 
