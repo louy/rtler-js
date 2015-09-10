@@ -12,6 +12,10 @@ describe('rtler', function() {
   });
 
   describe('#flip', function() {
+    it('works with empty values', function() {
+      var a = '', b = '';
+      expect(rtler.flip(a)).to.equal(b);
+    });
     it('skips empty declarations', function() {
       var a = 'div{}', b = '';
       expect(rtler.flip(a)).to.equal(b);
@@ -54,8 +58,12 @@ describe('rtler', function() {
     });
   });
 
-  describe.skip('#override', function() {
-    it('creates override', function() {
+  describe('#override', function() {
+    it('works with empty values', function() {
+      var a = '', b = '';
+      expect(rtler.override(a)).to.equal(b);
+    });
+    it.skip('creates override', function() {
       var a = 'div{right:0}', b = 'div{left:0;right:auto}';
       expect(rtler.override(a)).to.equal(b);
     });
